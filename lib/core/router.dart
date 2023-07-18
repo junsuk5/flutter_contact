@@ -20,30 +20,31 @@ final router = GoRouter(
 
 ChangeNotifierProvider<ContactListViewModel> _buildRoot() {
   return ChangeNotifierProvider(
-        create: (_) => ContactListViewModel(),
-        child: Builder(builder: (context) {
-          final viewModel = context.watch<ContactListViewModel>();
-          return ContactListScreen(
-            onEvent: (ContactListEvent event) {
-              if (event is OnAddNewContactClick) {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return AddContactSheet(
-                      onEvent: (ContactListEvent event) {
-                        if (event is DismissContact) {
-                          context.pop();
-                        }
-                        viewModel.onEvent(event);
-                      },
-                    );
+    create: (_) => ContactListViewModel(),
+    child: Builder(builder: (context) {
+      final viewModel = context.watch<ContactListViewModel>();
+      return ContactListScreen(
+        state: viewModel.state,
+        onEvent: (ContactListEvent event) {
+          if (event is OnAddNewContactClick) {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (BuildContext context) {
+                return AddContactSheet(
+                  onEvent: (ContactListEvent event) {
+                    if (event is DismissContact) {
+                      context.pop();
+                    }
+                    viewModel.onEvent(event);
                   },
                 );
-              }
-              viewModel.onEvent(event);
-            },
-          );
-        }),
+              },
+            );
+          }
+          viewModel.onEvent(event);
+        },
       );
+    }),
+  );
 }
