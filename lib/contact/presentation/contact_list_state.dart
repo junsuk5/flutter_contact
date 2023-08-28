@@ -1,8 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'contact_list_state.freezed.dart';
-
 part 'contact_list_state.g.dart';
 
 @freezed

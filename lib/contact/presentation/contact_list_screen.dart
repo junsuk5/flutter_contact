@@ -1,15 +1,56 @@
+import 'package:contact/contact/presentation/components/add_contact_sheet.dart';
 import 'package:contact/contact/presentation/contact_list_event.dart';
 import 'package:contact/contact/presentation/contact_list_state.dart';
+import 'package:contact/contact/presentation/contact_list_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class ContactListScreen extends StatelessWidget {
-  final void Function(ContactListEvent event) onEvent;
-  final ContactListState state;
+  const ContactListScreen({super.key});
 
-  const ContactListScreen({
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = context.watch<ContactListViewModel>();
+    final state = viewModel.state;
+    return ContactListUI(
+      state: state,
+      onEvent: (ContactListEvent event) {
+        if (event is OnAddNewContactClick) {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (BuildContext context) {
+              return AddContactSheet(
+                onEvent: (ContactListEvent event) {
+                  if (event is DismissContact) {
+                    const snackBar = SnackBar(
+                      content: Text('Yay! A SnackBar!'),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    context.pop();
+                  }
+                  viewModel.onEvent(event);
+                },
+              );
+            },
+          );
+        }
+        viewModel.onEvent(event);
+      },
+    );
+  }
+}
+
+class ContactListUI extends StatelessWidget {
+  final ContactListState state;
+  final Function(ContactListEvent event) onEvent;
+
+  const ContactListUI({
     super.key,
-    required this.onEvent,
     required this.state,
+    required this.onEvent,
   });
 
   @override
