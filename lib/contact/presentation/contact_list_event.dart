@@ -1,10 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:contact/contact/domain/contact.dart';
 
-part 'contact_list_event.freezed.dart';
+sealed class ContactListEvent {}
 
-@freezed
-sealed class ContactListEvent with _$ContactListEvent {
-  const factory ContactListEvent.onAddNewContactClick() = OnAddNewContactClick;
-  const factory ContactListEvent.dismissContact() = DismissContact;
+class OnAddNewContactClick implements ContactListEvent {}
+
+class DismissContact implements ContactListEvent {}
+
+class SelectContact implements ContactListEvent {
+  final Contact contact;
+
+  SelectContact(this.contact);
 }
-

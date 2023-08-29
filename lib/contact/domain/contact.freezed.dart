@@ -14,15 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Contact _$ContactFromJson(Map<String, dynamic> json) {
+  return _Contact.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Contact {
   int? get id => throw _privateConstructorUsedError;
+  @Uint8ListConverter()
+  Uint8List? get photoBytes => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
-  Uint8List? get photoBytes => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ContactCopyWith<Contact> get copyWith => throw _privateConstructorUsedError;
 }
@@ -34,11 +40,11 @@ abstract class $ContactCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      @Uint8ListConverter() Uint8List? photoBytes,
       String firstName,
       String lastName,
       String email,
-      String phoneNumber,
-      Uint8List? photoBytes});
+      String phoneNumber});
 }
 
 /// @nodoc
@@ -55,17 +61,21 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
   @override
   $Res call({
     Object? id = freezed,
+    Object? photoBytes = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
     Object? phoneNumber = null,
-    Object? photoBytes = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      photoBytes: freezed == photoBytes
+          ? _value.photoBytes
+          : photoBytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -82,10 +92,6 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      photoBytes: freezed == photoBytes
-          ? _value.photoBytes
-          : photoBytes // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
     ) as $Val);
   }
 }
@@ -99,11 +105,11 @@ abstract class _$$_ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      @Uint8ListConverter() Uint8List? photoBytes,
       String firstName,
       String lastName,
       String email,
-      String phoneNumber,
-      Uint8List? photoBytes});
+      String phoneNumber});
 }
 
 /// @nodoc
@@ -117,17 +123,21 @@ class __$$_ContactCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? photoBytes = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
     Object? phoneNumber = null,
-    Object? photoBytes = freezed,
   }) {
     return _then(_$_Contact(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      photoBytes: freezed == photoBytes
+          ? _value.photoBytes
+          : photoBytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -144,27 +154,29 @@ class __$$_ContactCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      photoBytes: freezed == photoBytes
-          ? _value.photoBytes
-          : photoBytes // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Contact with DiagnosticableTreeMixin implements _Contact {
   const _$_Contact(
       {this.id,
+      @Uint8ListConverter() this.photoBytes,
       required this.firstName,
       required this.lastName,
       required this.email,
-      required this.phoneNumber,
-      this.photoBytes});
+      required this.phoneNumber});
+
+  factory _$_Contact.fromJson(Map<String, dynamic> json) =>
+      _$$_ContactFromJson(json);
 
   @override
   final int? id;
+  @override
+  @Uint8ListConverter()
+  final Uint8List? photoBytes;
   @override
   final String firstName;
   @override
@@ -173,12 +185,10 @@ class _$_Contact with DiagnosticableTreeMixin implements _Contact {
   final String email;
   @override
   final String phoneNumber;
-  @override
-  final Uint8List? photoBytes;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Contact(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, photoBytes: $photoBytes)';
+    return 'Contact(id: $id, photoBytes: $photoBytes, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -187,11 +197,11 @@ class _$_Contact with DiagnosticableTreeMixin implements _Contact {
     properties
       ..add(DiagnosticsProperty('type', 'Contact'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('photoBytes', photoBytes))
       ..add(DiagnosticsProperty('firstName', firstName))
       ..add(DiagnosticsProperty('lastName', lastName))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
-      ..add(DiagnosticsProperty('photoBytes', photoBytes));
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
@@ -200,39 +210,58 @@ class _$_Contact with DiagnosticableTreeMixin implements _Contact {
         (other.runtimeType == runtimeType &&
             other is _$_Contact &&
             (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other.photoBytes, photoBytes) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.photoBytes, photoBytes));
+                other.phoneNumber == phoneNumber));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, email,
-      phoneNumber, const DeepCollectionEquality().hash(photoBytes));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(photoBytes),
+      firstName,
+      lastName,
+      email,
+      phoneNumber);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_ContactCopyWith<_$_Contact> get copyWith =>
       __$$_ContactCopyWithImpl<_$_Contact>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ContactToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Contact implements Contact {
   const factory _Contact(
       {final int? id,
+      @Uint8ListConverter() final Uint8List? photoBytes,
       required final String firstName,
       required final String lastName,
       required final String email,
-      required final String phoneNumber,
-      final Uint8List? photoBytes}) = _$_Contact;
+      required final String phoneNumber}) = _$_Contact;
+
+  factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 
   @override
   int? get id;
+  @override
+  @Uint8ListConverter()
+  Uint8List? get photoBytes;
   @override
   String get firstName;
   @override
@@ -241,8 +270,6 @@ abstract class _Contact implements Contact {
   String get email;
   @override
   String get phoneNumber;
-  @override
-  Uint8List? get photoBytes;
   @override
   @JsonKey(ignore: true)
   _$$_ContactCopyWith<_$_Contact> get copyWith =>

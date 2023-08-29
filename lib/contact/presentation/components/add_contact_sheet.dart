@@ -17,7 +17,7 @@ class AddContactSheet extends StatelessWidget {
         children: [
           const Text('test'),
           ElevatedButton(
-            onPressed: () => onEvent(const ContactListEvent.dismissContact()),
+            onPressed: () => onEvent(DismissContact()),
             child: const Text('종료'),
           ),
         ],

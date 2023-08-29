@@ -1,4 +1,5 @@
 import 'package:contact/contact/presentation/components/add_contact_sheet.dart';
+import 'package:contact/contact/presentation/components/contact_list_item.dart';
 import 'package:contact/contact/presentation/contact_list_event.dart';
 import 'package:contact/contact/presentation/contact_list_state.dart';
 import 'package:contact/contact/presentation/contact_list_view_model.dart';
@@ -56,16 +57,42 @@ class ContactListUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: [Text('연락처 (0)')],
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  '연락처 (${state.contacts.length})',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ...state.contacts
+                  .map((contact) => Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 8.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            onEvent(SelectContact(contact));
+                          },
+                          child: ContactListItem(
+                            contact: contact,
+                          ),
+                        ),
+                      ))
+                  .toList(),
+            ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => onEvent(const ContactListEvent.onAddNewContactClick()),
+        onPressed: () => onEvent(OnAddNewContactClick()),
         child: const Icon(Icons.person_add),
       ),
     );

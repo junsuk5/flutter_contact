@@ -20,6 +20,11 @@ ContactListState _$ContactListStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContactListState {
+  List<Contact> get contacts => throw _privateConstructorUsedError;
+  List<Contact> get recentlyAddedContacts => throw _privateConstructorUsedError;
+  Contact? get selectedContact => throw _privateConstructorUsedError;
+  bool get isAddContactSheetOpen => throw _privateConstructorUsedError;
+  bool get isSelectedContactSheetOpen => throw _privateConstructorUsedError;
   String? get firstNameError => throw _privateConstructorUsedError;
   String? get lastNameError => throw _privateConstructorUsedError;
   String? get emailError => throw _privateConstructorUsedError;
@@ -38,10 +43,17 @@ abstract class $ContactListStateCopyWith<$Res> {
       _$ContactListStateCopyWithImpl<$Res, ContactListState>;
   @useResult
   $Res call(
-      {String? firstNameError,
+      {List<Contact> contacts,
+      List<Contact> recentlyAddedContacts,
+      Contact? selectedContact,
+      bool isAddContactSheetOpen,
+      bool isSelectedContactSheetOpen,
+      String? firstNameError,
       String? lastNameError,
       String? emailError,
       String? phoneNumberError});
+
+  $ContactCopyWith<$Res>? get selectedContact;
 }
 
 /// @nodoc
@@ -57,12 +69,37 @@ class _$ContactListStateCopyWithImpl<$Res, $Val extends ContactListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? contacts = null,
+    Object? recentlyAddedContacts = null,
+    Object? selectedContact = freezed,
+    Object? isAddContactSheetOpen = null,
+    Object? isSelectedContactSheetOpen = null,
     Object? firstNameError = freezed,
     Object? lastNameError = freezed,
     Object? emailError = freezed,
     Object? phoneNumberError = freezed,
   }) {
     return _then(_value.copyWith(
+      contacts: null == contacts
+          ? _value.contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact>,
+      recentlyAddedContacts: null == recentlyAddedContacts
+          ? _value.recentlyAddedContacts
+          : recentlyAddedContacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact>,
+      selectedContact: freezed == selectedContact
+          ? _value.selectedContact
+          : selectedContact // ignore: cast_nullable_to_non_nullable
+              as Contact?,
+      isAddContactSheetOpen: null == isAddContactSheetOpen
+          ? _value.isAddContactSheetOpen
+          : isAddContactSheetOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSelectedContactSheetOpen: null == isSelectedContactSheetOpen
+          ? _value.isSelectedContactSheetOpen
+          : isSelectedContactSheetOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       firstNameError: freezed == firstNameError
           ? _value.firstNameError
           : firstNameError // ignore: cast_nullable_to_non_nullable
@@ -81,6 +118,18 @@ class _$ContactListStateCopyWithImpl<$Res, $Val extends ContactListState>
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactCopyWith<$Res>? get selectedContact {
+    if (_value.selectedContact == null) {
+      return null;
+    }
+
+    return $ContactCopyWith<$Res>(_value.selectedContact!, (value) {
+      return _then(_value.copyWith(selectedContact: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -92,10 +141,18 @@ abstract class _$$_ContactListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? firstNameError,
+      {List<Contact> contacts,
+      List<Contact> recentlyAddedContacts,
+      Contact? selectedContact,
+      bool isAddContactSheetOpen,
+      bool isSelectedContactSheetOpen,
+      String? firstNameError,
       String? lastNameError,
       String? emailError,
       String? phoneNumberError});
+
+  @override
+  $ContactCopyWith<$Res>? get selectedContact;
 }
 
 /// @nodoc
@@ -109,12 +166,37 @@ class __$$_ContactListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? contacts = null,
+    Object? recentlyAddedContacts = null,
+    Object? selectedContact = freezed,
+    Object? isAddContactSheetOpen = null,
+    Object? isSelectedContactSheetOpen = null,
     Object? firstNameError = freezed,
     Object? lastNameError = freezed,
     Object? emailError = freezed,
     Object? phoneNumberError = freezed,
   }) {
     return _then(_$_ContactListState(
+      contacts: null == contacts
+          ? _value._contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact>,
+      recentlyAddedContacts: null == recentlyAddedContacts
+          ? _value._recentlyAddedContacts
+          : recentlyAddedContacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact>,
+      selectedContact: freezed == selectedContact
+          ? _value.selectedContact
+          : selectedContact // ignore: cast_nullable_to_non_nullable
+              as Contact?,
+      isAddContactSheetOpen: null == isAddContactSheetOpen
+          ? _value.isAddContactSheetOpen
+          : isAddContactSheetOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSelectedContactSheetOpen: null == isSelectedContactSheetOpen
+          ? _value.isSelectedContactSheetOpen
+          : isSelectedContactSheetOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       firstNameError: freezed == firstNameError
           ? _value.firstNameError
           : firstNameError // ignore: cast_nullable_to_non_nullable
@@ -139,14 +221,48 @@ class __$$_ContactListStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ContactListState implements _ContactListState {
   const _$_ContactListState(
-      {this.firstNameError,
+      {final List<Contact> contacts = const [],
+      final List<Contact> recentlyAddedContacts = const [],
+      this.selectedContact,
+      this.isAddContactSheetOpen = false,
+      this.isSelectedContactSheetOpen = false,
+      this.firstNameError,
       this.lastNameError,
       this.emailError,
-      this.phoneNumberError});
+      this.phoneNumberError})
+      : _contacts = contacts,
+        _recentlyAddedContacts = recentlyAddedContacts;
 
   factory _$_ContactListState.fromJson(Map<String, dynamic> json) =>
       _$$_ContactListStateFromJson(json);
 
+  final List<Contact> _contacts;
+  @override
+  @JsonKey()
+  List<Contact> get contacts {
+    if (_contacts is EqualUnmodifiableListView) return _contacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_contacts);
+  }
+
+  final List<Contact> _recentlyAddedContacts;
+  @override
+  @JsonKey()
+  List<Contact> get recentlyAddedContacts {
+    if (_recentlyAddedContacts is EqualUnmodifiableListView)
+      return _recentlyAddedContacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recentlyAddedContacts);
+  }
+
+  @override
+  final Contact? selectedContact;
+  @override
+  @JsonKey()
+  final bool isAddContactSheetOpen;
+  @override
+  @JsonKey()
+  final bool isSelectedContactSheetOpen;
   @override
   final String? firstNameError;
   @override
@@ -158,7 +274,7 @@ class _$_ContactListState implements _ContactListState {
 
   @override
   String toString() {
-    return 'ContactListState(firstNameError: $firstNameError, lastNameError: $lastNameError, emailError: $emailError, phoneNumberError: $phoneNumberError)';
+    return 'ContactListState(contacts: $contacts, recentlyAddedContacts: $recentlyAddedContacts, selectedContact: $selectedContact, isAddContactSheetOpen: $isAddContactSheetOpen, isSelectedContactSheetOpen: $isSelectedContactSheetOpen, firstNameError: $firstNameError, lastNameError: $lastNameError, emailError: $emailError, phoneNumberError: $phoneNumberError)';
   }
 
   @override
@@ -166,6 +282,17 @@ class _$_ContactListState implements _ContactListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ContactListState &&
+            const DeepCollectionEquality().equals(other._contacts, _contacts) &&
+            const DeepCollectionEquality()
+                .equals(other._recentlyAddedContacts, _recentlyAddedContacts) &&
+            (identical(other.selectedContact, selectedContact) ||
+                other.selectedContact == selectedContact) &&
+            (identical(other.isAddContactSheetOpen, isAddContactSheetOpen) ||
+                other.isAddContactSheetOpen == isAddContactSheetOpen) &&
+            (identical(other.isSelectedContactSheetOpen,
+                    isSelectedContactSheetOpen) ||
+                other.isSelectedContactSheetOpen ==
+                    isSelectedContactSheetOpen) &&
             (identical(other.firstNameError, firstNameError) ||
                 other.firstNameError == firstNameError) &&
             (identical(other.lastNameError, lastNameError) ||
@@ -179,7 +306,16 @@ class _$_ContactListState implements _ContactListState {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, firstNameError, lastNameError, emailError, phoneNumberError);
+      runtimeType,
+      const DeepCollectionEquality().hash(_contacts),
+      const DeepCollectionEquality().hash(_recentlyAddedContacts),
+      selectedContact,
+      isAddContactSheetOpen,
+      isSelectedContactSheetOpen,
+      firstNameError,
+      lastNameError,
+      emailError,
+      phoneNumberError);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +333,12 @@ class _$_ContactListState implements _ContactListState {
 
 abstract class _ContactListState implements ContactListState {
   const factory _ContactListState(
-      {final String? firstNameError,
+      {final List<Contact> contacts,
+      final List<Contact> recentlyAddedContacts,
+      final Contact? selectedContact,
+      final bool isAddContactSheetOpen,
+      final bool isSelectedContactSheetOpen,
+      final String? firstNameError,
       final String? lastNameError,
       final String? emailError,
       final String? phoneNumberError}) = _$_ContactListState;
@@ -205,6 +346,16 @@ abstract class _ContactListState implements ContactListState {
   factory _ContactListState.fromJson(Map<String, dynamic> json) =
       _$_ContactListState.fromJson;
 
+  @override
+  List<Contact> get contacts;
+  @override
+  List<Contact> get recentlyAddedContacts;
+  @override
+  Contact? get selectedContact;
+  @override
+  bool get isAddContactSheetOpen;
+  @override
+  bool get isSelectedContactSheetOpen;
   @override
   String? get firstNameError;
   @override
