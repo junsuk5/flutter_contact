@@ -64,6 +64,18 @@ class ContactRepositoryImpl implements ContactRepository {
 
   @override
   Future<List<Contact>> getRecentContacts(int amount) async {
-    return (await getContacts()).take(amount).toList();
+    return _db.rawQuery('''
+      SELECT * FROM contact ORDER BY createdAt DESC LIMIT $amount
+    ''').then((value) async {
+      final contactList = <Contact>[];
+
+      for (var e in value) {
+        final contact =
+            await ContactEntity.fromJson(e).toContact(_imageStorage);
+        contactList.add(contact);
+      }
+
+      return contactList;
+    });
   }
 }

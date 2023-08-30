@@ -1,6 +1,7 @@
 import 'package:contact/contact/domain/data_source/image_picker.dart';
 import 'package:contact/contact/presentation/components/add_contact_sheet.dart';
 import 'package:contact/contact/presentation/components/contact_list_item.dart';
+import 'package:contact/contact/presentation/components/recently_added_contacts.dart';
 import 'package:contact/contact/presentation/contact_list_event.dart';
 import 'package:contact/contact/presentation/contact_list_state.dart';
 import 'package:contact/contact/presentation/contact_list_view_model.dart';
@@ -62,6 +63,13 @@ class ContactListUI extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: ListView(
             children: [
+              RecentlyAddedContacts(
+                contacts: state.contacts,
+                onContactClick: (contact) {
+                  onEvent(SelectContact(contact));
+                },
+              ),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(

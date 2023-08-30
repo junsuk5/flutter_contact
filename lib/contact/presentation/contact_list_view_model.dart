@@ -65,14 +65,3 @@ class ContactListViewModel with ChangeNotifier {
   }
 }
 
-final contacts = List.generate(
-  50,
-  (index) => Contact(
-    id: index,
-    firstName: 'firstName$index',
-    lastName: 'lastName$index',
-    email: 'test@test$index.com',
-    phoneNumber: '123456789',
-    // photoBytes: null,
-  ),
-);
