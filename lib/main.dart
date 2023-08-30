@@ -1,8 +1,11 @@
 import 'package:contact/core/router.dart';
+import 'package:contact/di/di_setup.dart';
 import 'package:contact/ui/theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(const MyApp());
 }
 

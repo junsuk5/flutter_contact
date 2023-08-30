@@ -23,6 +23,7 @@ class ContactListScreen extends StatelessWidget {
             isScrollControlled: true,
             builder: (BuildContext context) {
               return AddContactSheet(
+                state: state,
                 onEvent: (ContactListEvent event) {
                   if (event is DismissContact) {
                     const snackBar = SnackBar(

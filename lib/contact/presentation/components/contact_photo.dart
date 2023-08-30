@@ -1,4 +1,4 @@
-import 'package:contact/contact/domain/contact.dart';
+import 'package:contact/contact/domain/model/contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactPhoto extends StatelessWidget {

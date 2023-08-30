@@ -8,7 +8,7 @@ part 'contact.g.dart';
 @freezed
 class Contact with _$Contact {
   const factory Contact({
-    int? id,
+    num? id,
     @Uint8ListConverter() Uint8List? photoBytes,
     required String firstName,
     required String lastName,

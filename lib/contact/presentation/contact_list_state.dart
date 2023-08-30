@@ -1,4 +1,4 @@
-import 'package:contact/contact/domain/contact.dart';
+import 'package:contact/contact/domain/model/contact.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'contact_list_state.freezed.dart';

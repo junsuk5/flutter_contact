@@ -20,7 +20,7 @@ Contact _$ContactFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Contact {
-  int? get id => throw _privateConstructorUsedError;
+  num? get id => throw _privateConstructorUsedError;
   @Uint8ListConverter()
   Uint8List? get photoBytes => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $ContactCopyWith<$Res> {
       _$ContactCopyWithImpl<$Res, Contact>;
   @useResult
   $Res call(
-      {int? id,
+      {num? id,
       @Uint8ListConverter() Uint8List? photoBytes,
       String firstName,
       String lastName,
@@ -71,7 +71,7 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       photoBytes: freezed == photoBytes
           ? _value.photoBytes
           : photoBytes // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ abstract class _$$_ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? id,
+      {num? id,
       @Uint8ListConverter() Uint8List? photoBytes,
       String firstName,
       String lastName,
@@ -133,7 +133,7 @@ class __$$_ContactCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       photoBytes: freezed == photoBytes
           ? _value.photoBytes
           : photoBytes // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ class _$_Contact with DiagnosticableTreeMixin implements _Contact {
       _$$_ContactFromJson(json);
 
   @override
-  final int? id;
+  final num? id;
   @override
   @Uint8ListConverter()
   final Uint8List? photoBytes;
@@ -248,7 +248,7 @@ class _$_Contact with DiagnosticableTreeMixin implements _Contact {
 
 abstract class _Contact implements Contact {
   const factory _Contact(
-      {final int? id,
+      {final num? id,
       @Uint8ListConverter() final Uint8List? photoBytes,
       required final String firstName,
       required final String lastName,
@@ -258,7 +258,7 @@ abstract class _Contact implements Contact {
   factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 
   @override
-  int? get id;
+  num? get id;
   @override
   @Uint8ListConverter()
   Uint8List? get photoBytes;
