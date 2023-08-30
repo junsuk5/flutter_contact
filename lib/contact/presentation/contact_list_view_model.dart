@@ -15,8 +15,7 @@ class ContactListViewModel with ChangeNotifier {
     _updateData();
   }
 
-  var _state = ContactListState(
-    contacts: contacts,
+  var _state = const ContactListState(
     firstNameError: '이름을 입력해 주세요',
     lastNameError: '성을 입력해 주세요',
     emailError: '이메일을 입력해 주세요',
@@ -24,8 +23,6 @@ class ContactListViewModel with ChangeNotifier {
   );
 
   ContactListState get state => _state;
-
-  Contact? _newContact;
 
   void _updateData() async {
     _state = _state.copyWith(
@@ -47,33 +44,19 @@ class ContactListViewModel with ChangeNotifier {
         log('OnAddPhotoClicked');
       case OnFirstNameChanged():
         log('OnFirstNameChanged');
-        _newContact = _newContact?.copyWith(
-          firstName: event.firstName,
-        );
-        notifyListeners();
       case OnLastNameChanged():
         log('OnLastNameChanged');
-        _newContact = _newContact?.copyWith(
-          lastName: event.lastName,
-        );
       case OnEmailChanged():
         log('OnEmailChanged');
-        _newContact = _newContact?.copyWith(
-          email: event.email,
-        );
       case OnPhoneNumberChanged():
         log('OnPhoneNumberChanged');
-        _newContact = _newContact?.copyWith(
-          phoneNumber: event.phoneNumber,
-        );
       case OnPhotoPicked():
         log('OnPhotoPicked');
-      case SaveContact():
+      case OnSaveContact():
         log('SaveContact');
-        _state = state.copyWith(
-          firstNameError: '이름을 입력해주세요.',
-        );
-        notifyListeners();
+        _contactRepository
+            .insertContact(event.contact)
+            .then((_) => _updateData());
       case EditContact():
         log('EditContact');
       case DeleteContact():

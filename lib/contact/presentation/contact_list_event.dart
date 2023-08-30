@@ -40,7 +40,11 @@ class OnPhotoPicked implements ContactListEvent {
 
 class OnAddPhotoClicked implements ContactListEvent {}
 
-class SaveContact implements ContactListEvent {}
+class OnSaveContact implements ContactListEvent {
+  final Contact contact;
+
+  OnSaveContact(this.contact);
+}
 
 class SelectContact implements ContactListEvent {
   final Contact contact;

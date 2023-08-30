@@ -13,7 +13,7 @@ class ImageStorageImpl implements ImageStorage {
   @override
   Future<String> saveImage(Uint8List bytes) async {
     final directory = await getApplicationSupportDirectory();
-    final fileName = '$directory/${uuid.v4()}.jpg';
+    final fileName = '${directory.path}/${uuid.v4()}.jpg';
     final file = File(fileName);
     await file.writeAsBytes(bytes);
     return fileName;

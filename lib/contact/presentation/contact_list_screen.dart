@@ -1,10 +1,11 @@
+import 'package:contact/contact/domain/data_source/image_picker.dart';
 import 'package:contact/contact/presentation/components/add_contact_sheet.dart';
 import 'package:contact/contact/presentation/components/contact_list_item.dart';
 import 'package:contact/contact/presentation/contact_list_event.dart';
 import 'package:contact/contact/presentation/contact_list_state.dart';
 import 'package:contact/contact/presentation/contact_list_view_model.dart';
+import 'package:contact/di/di_setup.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ContactListScreen extends StatelessWidget {
@@ -24,14 +25,12 @@ class ContactListScreen extends StatelessWidget {
             builder: (BuildContext context) {
               return AddContactSheet(
                 state: state,
-                onEvent: (ContactListEvent event) {
+                imagePicker: getIt<ImagePicker>(),
+                onEvent: (ContactListEvent event) async {
                   if (event is DismissContact) {
-                    const snackBar = SnackBar(
-                      content: Text('Yay! A SnackBar!'),
-                    );
-
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    context.pop();
+                    Navigator.pop(context);
+                  } else if (event is OnSaveContact) {
+                    Navigator.pop(context);
                   }
                   viewModel.onEvent(event);
                 },
