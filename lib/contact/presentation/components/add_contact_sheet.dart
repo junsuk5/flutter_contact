@@ -213,6 +213,7 @@ class ContactTextField extends StatelessWidget {
     return Column(
       children: [
         TextFormField(
+          initialValue: value,
           decoration: InputDecoration(
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)),

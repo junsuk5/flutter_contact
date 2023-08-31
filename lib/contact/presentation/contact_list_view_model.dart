@@ -60,7 +60,9 @@ class ContactListViewModel with ChangeNotifier {
         log('EditContact');
       case DeleteContact():
         log('DeleteContact');
+        _contactRepository
+            .deleteContact(event.contact.id!.toInt())
+            .then((_) => _updateData());
     }
   }
 }
-

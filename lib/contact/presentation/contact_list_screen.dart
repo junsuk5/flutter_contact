@@ -32,6 +32,27 @@ class ContactListScreen extends StatelessWidget {
                     Navigator.pop(context);
                   } else if (event is EditContact) {
                     Navigator.pop(context);
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) {
+                        return AddContactSheet(
+                          newContact: event.contact,
+                          state: state,
+                          imagePicker: getIt<ImagePicker>(),
+                          onEvent: (ContactListEvent event) async {
+                            if (event is DismissContact) {
+                              Navigator.pop(context);
+                            } else if (event is OnSaveContact) {
+                              Navigator.pop(context);
+                            }
+                            viewModel.onEvent(event);
+                          },
+                        );
+                      },
+                    );
+                  } else if (event is DeleteContact) {
+                    Navigator.pop(context);
                   }
                   viewModel.onEvent(event);
                 },

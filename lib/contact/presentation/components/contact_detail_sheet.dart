@@ -97,7 +97,7 @@ class EditRow extends StatelessWidget {
             shape: const CircleBorder(),
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () => onEditClick(),
             icon: Icon(
               Icons.edit,
               color: Theme.of(context).colorScheme.onSecondaryContainer,
@@ -111,7 +111,7 @@ class EditRow extends StatelessWidget {
             shape: const CircleBorder(),
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () => onDeleteClick(),
             icon: Icon(
               Icons.delete,
               color: Theme.of(context).colorScheme.onErrorContainer,
