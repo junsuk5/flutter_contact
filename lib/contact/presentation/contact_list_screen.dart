@@ -1,5 +1,6 @@
 import 'package:contact/contact/domain/data_source/image_picker.dart';
 import 'package:contact/contact/presentation/components/add_contact_sheet.dart';
+import 'package:contact/contact/presentation/components/contact_detail_sheet.dart';
 import 'package:contact/contact/presentation/components/contact_list_item.dart';
 import 'package:contact/contact/presentation/components/recently_added_contacts.dart';
 import 'package:contact/contact/presentation/contact_list_event.dart';
@@ -19,6 +20,25 @@ class ContactListScreen extends StatelessWidget {
     return ContactListUI(
       state: state,
       onEvent: (ContactListEvent event) {
+        if (event is SelectContact) {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (BuildContext context) {
+              return ContactDetailSheet(
+                selectedContact: event.contact,
+                onEvent: (event) {
+                  if (event is DismissContact) {
+                    Navigator.pop(context);
+                  } else if (event is EditContact) {
+                    Navigator.pop(context);
+                  }
+                  viewModel.onEvent(event);
+                },
+              );
+            },
+          );
+        }
         if (event is OnAddNewContactClick) {
           showModalBottomSheet(
             context: context,

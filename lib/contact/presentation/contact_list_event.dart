@@ -58,4 +58,8 @@ class EditContact implements ContactListEvent {
   EditContact(this.contact);
 }
 
-class DeleteContact implements ContactListEvent {}
+class DeleteContact implements ContactListEvent {
+  final Contact contact;
+
+  DeleteContact(this.contact);
+}

@@ -10,8 +10,6 @@ class ContactListState with _$ContactListState {
     @Default([]) List<Contact> contacts,
     @Default([]) List<Contact> recentlyAddedContacts,
     Contact? selectedContact,
-    @Default(false) bool isAddContactSheetOpen,
-    @Default(false) bool isSelectedContactSheetOpen,
     String? firstNameError,
     String? lastNameError,
     String? emailError,

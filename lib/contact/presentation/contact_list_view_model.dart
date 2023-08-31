@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:contact/contact/domain/model/contact.dart';
 import 'package:contact/contact/domain/repository/contact_repository.dart';
 import 'package:contact/contact/presentation/contact_list_event.dart';
 import 'package:contact/contact/presentation/contact_list_state.dart';

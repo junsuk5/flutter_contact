@@ -17,7 +17,7 @@ class ContactPhoto extends StatelessWidget {
       null => Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(40),
           ),
           child: Icon(
             Icons.person,
@@ -26,7 +26,7 @@ class ContactPhoto extends StatelessWidget {
           ),
         ),
       [...] => ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(40),
           child: Image.memory(
             contact.photoBytes!,
             height: iconSize,
