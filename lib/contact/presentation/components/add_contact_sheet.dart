@@ -47,147 +47,145 @@ class _AddContactSheetState extends State<AddContactSheet> {
       ),
       child: Form(
         key: _formKey,
-        child: SizedBox(
-          width: double.infinity,
-          child: Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 60),
-                      switch (_newContact?.photoBytes) {
-                        null => InkWell(
-                            onTap: () async {
-                              widget.onEvent(OnAddPhotoClicked());
+        child: Stack(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 60),
+                    switch (_newContact?.photoBytes) {
+                      null => InkWell(
+                          onTap: () async {
+                            widget.onEvent(OnAddPhotoClicked());
 
-                              _newContact = _newContact?.copyWith(
-                                photoBytes:
-                                    await widget.imagePicker?.pickImage(),
-                              );
+                            _newContact = _newContact?.copyWith(
+                              photoBytes:
+                                  await widget.imagePicker?.pickImage(),
+                            );
 
-                              if (_newContact?.photoBytes != null) {
-                                widget.onEvent(
-                                    OnPhotoPicked(_newContact!.photoBytes!));
-                              }
+                            if (_newContact?.photoBytes != null) {
+                              widget.onEvent(
+                                  OnPhotoPicked(_newContact!.photoBytes!));
+                            }
 
-                              setState(() {});
-                            },
-                            child: Container(
-                              width: 150,
-                              height: 150,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
-                                borderRadius: BorderRadius.circular(50),
-                                border: Border.all(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondaryContainer,
-                                  width: 1,
-                                ),
-                              ),
-                              child: Icon(
-                                Icons.add_rounded,
-                                size: 40,
+                            setState(() {});
+                          },
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer,
+                              borderRadius: BorderRadius.circular(50),
+                              border: Border.all(
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onSecondaryContainer,
+                                width: 1,
                               ),
                             ),
-                          ),
-                        [...] => InkWell(
-                            onTap: () async {
-                              widget.onEvent(OnAddPhotoClicked());
-
-                              _newContact = _newContact?.copyWith(
-                                photoBytes:
-                                    await widget.imagePicker?.pickImage(),
-                              );
-
-                              if (_newContact?.photoBytes != null) {
-                                widget.onEvent(
-                                    OnPhotoPicked(_newContact!.photoBytes!));
-                              }
-
-                              setState(() {});
-                            },
-                            child: ContactPhoto(
-                              contact: _newContact!,
-                              iconSize: 150,
+                            child: Icon(
+                              Icons.add_rounded,
+                              size: 40,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                             ),
                           ),
+                        ),
+                      [...] => InkWell(
+                          onTap: () async {
+                            widget.onEvent(OnAddPhotoClicked());
+
+                            _newContact = _newContact?.copyWith(
+                              photoBytes:
+                                  await widget.imagePicker?.pickImage(),
+                            );
+
+                            if (_newContact?.photoBytes != null) {
+                              widget.onEvent(
+                                  OnPhotoPicked(_newContact!.photoBytes!));
+                            }
+
+                            setState(() {});
+                          },
+                          child: ContactPhoto(
+                            contact: _newContact!,
+                            iconSize: 150,
+                          ),
+                        ),
+                    },
+                    const SizedBox(height: 16),
+                    ContactTextField(
+                      value: _newContact?.firstName ?? '',
+                      placeHolder: '이름',
+                      error: widget.state.firstNameError,
+                      onChanged: (String value) {
+                        _newContact = _newContact?.copyWith(
+                          firstName: value,
+                        );
+                        widget.onEvent(OnFirstNameChanged(value));
                       },
-                      const SizedBox(height: 16),
-                      ContactTextField(
-                        value: _newContact?.firstName ?? '',
-                        placeHolder: '이름',
-                        error: widget.state.firstNameError,
-                        onChanged: (String value) {
-                          _newContact = _newContact?.copyWith(
-                            firstName: value,
-                          );
-                          widget.onEvent(OnFirstNameChanged(value));
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ContactTextField(
-                        value: _newContact?.lastName ?? '',
-                        placeHolder: '성',
-                        error: widget.state.lastNameError,
-                        onChanged: (String value) {
-                          _newContact = _newContact?.copyWith(
-                            lastName: value,
-                          );
-                          widget.onEvent(OnLastNameChanged(value));
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ContactTextField(
-                        value: _newContact?.email ?? '',
-                        placeHolder: '이메일',
-                        error: widget.state.emailError,
-                        onChanged: (String value) {
-                          _newContact = _newContact?.copyWith(
-                            email: value,
-                          );
-                          widget.onEvent(OnEmailChanged(value));
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ContactTextField(
-                        value: _newContact?.phoneNumber ?? '',
-                        placeHolder: '전화번호',
-                        error: widget.state.phoneNumberError,
-                        onChanged: (String value) {
-                          _newContact = _newContact?.copyWith(
-                            phoneNumber: value,
-                          );
-                          widget.onEvent(OnPhoneNumberChanged(value));
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate() &&
-                              _newContact != null) {
-                            widget.onEvent(OnSaveContact(_newContact!));
-                          }
-                        },
-                        child: const Text('저장'),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 16),
+                    ContactTextField(
+                      value: _newContact?.lastName ?? '',
+                      placeHolder: '성',
+                      error: widget.state.lastNameError,
+                      onChanged: (String value) {
+                        _newContact = _newContact?.copyWith(
+                          lastName: value,
+                        );
+                        widget.onEvent(OnLastNameChanged(value));
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    ContactTextField(
+                      value: _newContact?.email ?? '',
+                      placeHolder: '이메일',
+                      error: widget.state.emailError,
+                      onChanged: (String value) {
+                        _newContact = _newContact?.copyWith(
+                          email: value,
+                        );
+                        widget.onEvent(OnEmailChanged(value));
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    ContactTextField(
+                      value: _newContact?.phoneNumber ?? '',
+                      placeHolder: '전화번호',
+                      error: widget.state.phoneNumberError,
+                      onChanged: (String value) {
+                        _newContact = _newContact?.copyWith(
+                          phoneNumber: value,
+                        );
+                        widget.onEvent(OnPhoneNumberChanged(value));
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate() &&
+                            _newContact != null) {
+                          widget.onEvent(OnSaveContact(_newContact!));
+                        }
+                      },
+                      child: const Text('저장'),
+                    ),
+                  ],
                 ),
               ),
-              IconButton(
-                onPressed: () => widget.onEvent(DismissContact()),
-                icon: const Icon(Icons.close),
-              ),
-            ],
-          ),
+            ),
+            IconButton(
+              onPressed: () => widget.onEvent(DismissContact()),
+              icon: const Icon(Icons.close),
+            ),
+          ],
         ),
       ),
     );
