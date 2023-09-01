@@ -121,6 +121,7 @@ class _AddContactSheetState extends State<AddContactSheet> {
                     },
                     const SizedBox(height: 16),
                     ContactTextField(
+                      key: const Key('firstName'),
                       value: _newContact?.firstName ?? '',
                       placeHolder: '이름',
                       error: widget.state.firstNameError,
