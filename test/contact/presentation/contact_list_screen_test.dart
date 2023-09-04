@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:contact/contact/domain/model/contact.dart';
 import 'package:contact/contact/presentation/components/contact_list_item.dart';
 import 'package:contact/contact/presentation/components/contact_list_ui.dart';
@@ -23,17 +26,26 @@ void main() {
     expect(find.text('최근 추가됨'), findsNothing);
   });
 
-  testWidgets('1개의 연락처', (tester) async {
+  testWidgets('2개의 연락처', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: ContactListUI(
-          state: const ContactListState(
+          state: ContactListState(
             contacts: [
-              Contact(
+              const Contact(
                 firstName: 'John',
                 lastName: 'Doe',
                 email: 'test@test.com',
                 phoneNumber: '010-1234-5678',
+              ),
+              Contact(
+                firstName: 'Jane',
+                lastName: 'Doe',
+                email: 'test2@test.com',
+                phoneNumber: '010-1234-0000',
+                photoBytes: Uint8List.fromList(
+                  File('test_resources/iu.jpeg').readAsBytesSync(),
+                ),
               ),
             ],
           ),
@@ -42,7 +54,7 @@ void main() {
       ),
     );
 
-    expect(find.text('연락처 (1)'), findsOneWidget);
+    expect(find.text('연락처 (2)'), findsOneWidget);
     expect(find.text('John'), findsOneWidget);
     expect(find.text('최근 추가됨'), findsOneWidget);
   });

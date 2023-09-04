@@ -14,18 +14,20 @@ class ContactPreviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => onClick(),
-      child: Column(
-        children: [
-          SizedBox(
-            width: 50,
-            height: 50,
-            child: ContactPhoto(contact: contact),
-          ),
-          const SizedBox(height: 8),
-          Text(contact.firstName),
-        ],
+    return Material(
+      child: InkWell(
+        onTap: () => onClick(),
+        child: Column(
+          children: [
+            SizedBox(
+              width: 50,
+              height: 50,
+              child: ContactPhoto(contact: contact),
+            ),
+            const SizedBox(height: 8),
+            Text(contact.firstName),
+          ],
+        ),
       ),
     );
   }
