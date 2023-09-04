@@ -19,9 +19,6 @@ _$_ContactListState _$$_ContactListStateFromJson(Map<String, dynamic> json) =>
       selectedContact: json['selectedContact'] == null
           ? null
           : Contact.fromJson(json['selectedContact'] as Map<String, dynamic>),
-      isAddContactSheetOpen: json['isAddContactSheetOpen'] as bool? ?? false,
-      isSelectedContactSheetOpen:
-          json['isSelectedContactSheetOpen'] as bool? ?? false,
       firstNameError: json['firstNameError'] as String?,
       lastNameError: json['lastNameError'] as String?,
       emailError: json['emailError'] as String?,
@@ -33,8 +30,6 @@ Map<String, dynamic> _$$_ContactListStateToJson(_$_ContactListState instance) =>
       'contacts': instance.contacts,
       'recentlyAddedContacts': instance.recentlyAddedContacts,
       'selectedContact': instance.selectedContact,
-      'isAddContactSheetOpen': instance.isAddContactSheetOpen,
-      'isSelectedContactSheetOpen': instance.isSelectedContactSheetOpen,
       'firstNameError': instance.firstNameError,
       'lastNameError': instance.lastNameError,
       'emailError': instance.emailError,

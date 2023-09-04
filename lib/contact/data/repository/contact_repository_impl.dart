@@ -21,7 +21,7 @@ class ContactRepositoryImpl implements ContactRepository {
     // 이미지 저장
     final imagePath = switch (contact.photoBytes) {
       null => null,
-      [...] => await _imageStorage.saveImage(contact.photoBytes!),
+      _ => await _imageStorage.saveImage(contact.photoBytes!),
     };
 
     await _db.insert(

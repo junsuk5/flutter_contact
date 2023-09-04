@@ -8,10 +8,7 @@ extension ToContact on ContactEntity {
   Future<Contact> toContact(ImageStorage imageStorage) async {
     Uint8List? photoBytes;
     try {
-      photoBytes = switch (imagePath) {
-        null => null,
-        _ => await imageStorage.getImage(imagePath!),
-      };
+      photoBytes = await imageStorage.getImage(imagePath!);
     } catch (e) {
       photoBytes = null;
     }

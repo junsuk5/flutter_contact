@@ -25,7 +25,7 @@ class ContactPhoto extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSecondaryContainer,
           ),
         ),
-      [...] => ClipRRect(
+      _ => ClipRRect(
           borderRadius: BorderRadius.circular(40),
           child: Image.memory(
             contact.photoBytes!,

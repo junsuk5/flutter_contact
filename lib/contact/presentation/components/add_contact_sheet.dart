@@ -97,7 +97,7 @@ class _AddContactSheetState extends State<AddContactSheet> {
                             ),
                           ),
                         ),
-                      [...] => InkWell(
+                      _ => InkWell(
                           onTap: () async {
                             widget.onEvent(OnAddPhotoClicked());
 
@@ -134,6 +134,7 @@ class _AddContactSheetState extends State<AddContactSheet> {
                     ),
                     const SizedBox(height: 16),
                     ContactTextField(
+                      key: const Key('lastName'),
                       value: _newContact?.lastName ?? '',
                       placeHolder: '성',
                       error: widget.state.lastNameError,
@@ -146,6 +147,7 @@ class _AddContactSheetState extends State<AddContactSheet> {
                     ),
                     const SizedBox(height: 16),
                     ContactTextField(
+                      key: const Key('email'),
                       value: _newContact?.email ?? '',
                       placeHolder: '이메일',
                       error: widget.state.emailError,
@@ -158,6 +160,7 @@ class _AddContactSheetState extends State<AddContactSheet> {
                     ),
                     const SizedBox(height: 16),
                     ContactTextField(
+                      key: const Key('phoneNumber'),
                       value: _newContact?.phoneNumber ?? '',
                       placeHolder: '전화번호',
                       error: widget.state.phoneNumberError,

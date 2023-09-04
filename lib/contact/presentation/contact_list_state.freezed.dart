@@ -23,8 +23,6 @@ mixin _$ContactListState {
   List<Contact> get contacts => throw _privateConstructorUsedError;
   List<Contact> get recentlyAddedContacts => throw _privateConstructorUsedError;
   Contact? get selectedContact => throw _privateConstructorUsedError;
-  bool get isAddContactSheetOpen => throw _privateConstructorUsedError;
-  bool get isSelectedContactSheetOpen => throw _privateConstructorUsedError;
   String? get firstNameError => throw _privateConstructorUsedError;
   String? get lastNameError => throw _privateConstructorUsedError;
   String? get emailError => throw _privateConstructorUsedError;
@@ -46,8 +44,6 @@ abstract class $ContactListStateCopyWith<$Res> {
       {List<Contact> contacts,
       List<Contact> recentlyAddedContacts,
       Contact? selectedContact,
-      bool isAddContactSheetOpen,
-      bool isSelectedContactSheetOpen,
       String? firstNameError,
       String? lastNameError,
       String? emailError,
@@ -72,8 +68,6 @@ class _$ContactListStateCopyWithImpl<$Res, $Val extends ContactListState>
     Object? contacts = null,
     Object? recentlyAddedContacts = null,
     Object? selectedContact = freezed,
-    Object? isAddContactSheetOpen = null,
-    Object? isSelectedContactSheetOpen = null,
     Object? firstNameError = freezed,
     Object? lastNameError = freezed,
     Object? emailError = freezed,
@@ -92,14 +86,6 @@ class _$ContactListStateCopyWithImpl<$Res, $Val extends ContactListState>
           ? _value.selectedContact
           : selectedContact // ignore: cast_nullable_to_non_nullable
               as Contact?,
-      isAddContactSheetOpen: null == isAddContactSheetOpen
-          ? _value.isAddContactSheetOpen
-          : isAddContactSheetOpen // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSelectedContactSheetOpen: null == isSelectedContactSheetOpen
-          ? _value.isSelectedContactSheetOpen
-          : isSelectedContactSheetOpen // ignore: cast_nullable_to_non_nullable
-              as bool,
       firstNameError: freezed == firstNameError
           ? _value.firstNameError
           : firstNameError // ignore: cast_nullable_to_non_nullable
@@ -144,8 +130,6 @@ abstract class _$$_ContactListStateCopyWith<$Res>
       {List<Contact> contacts,
       List<Contact> recentlyAddedContacts,
       Contact? selectedContact,
-      bool isAddContactSheetOpen,
-      bool isSelectedContactSheetOpen,
       String? firstNameError,
       String? lastNameError,
       String? emailError,
@@ -169,8 +153,6 @@ class __$$_ContactListStateCopyWithImpl<$Res>
     Object? contacts = null,
     Object? recentlyAddedContacts = null,
     Object? selectedContact = freezed,
-    Object? isAddContactSheetOpen = null,
-    Object? isSelectedContactSheetOpen = null,
     Object? firstNameError = freezed,
     Object? lastNameError = freezed,
     Object? emailError = freezed,
@@ -189,14 +171,6 @@ class __$$_ContactListStateCopyWithImpl<$Res>
           ? _value.selectedContact
           : selectedContact // ignore: cast_nullable_to_non_nullable
               as Contact?,
-      isAddContactSheetOpen: null == isAddContactSheetOpen
-          ? _value.isAddContactSheetOpen
-          : isAddContactSheetOpen // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSelectedContactSheetOpen: null == isSelectedContactSheetOpen
-          ? _value.isSelectedContactSheetOpen
-          : isSelectedContactSheetOpen // ignore: cast_nullable_to_non_nullable
-              as bool,
       firstNameError: freezed == firstNameError
           ? _value.firstNameError
           : firstNameError // ignore: cast_nullable_to_non_nullable
@@ -224,8 +198,6 @@ class _$_ContactListState implements _ContactListState {
       {final List<Contact> contacts = const [],
       final List<Contact> recentlyAddedContacts = const [],
       this.selectedContact,
-      this.isAddContactSheetOpen = false,
-      this.isSelectedContactSheetOpen = false,
       this.firstNameError,
       this.lastNameError,
       this.emailError,
@@ -258,12 +230,6 @@ class _$_ContactListState implements _ContactListState {
   @override
   final Contact? selectedContact;
   @override
-  @JsonKey()
-  final bool isAddContactSheetOpen;
-  @override
-  @JsonKey()
-  final bool isSelectedContactSheetOpen;
-  @override
   final String? firstNameError;
   @override
   final String? lastNameError;
@@ -274,7 +240,7 @@ class _$_ContactListState implements _ContactListState {
 
   @override
   String toString() {
-    return 'ContactListState(contacts: $contacts, recentlyAddedContacts: $recentlyAddedContacts, selectedContact: $selectedContact, isAddContactSheetOpen: $isAddContactSheetOpen, isSelectedContactSheetOpen: $isSelectedContactSheetOpen, firstNameError: $firstNameError, lastNameError: $lastNameError, emailError: $emailError, phoneNumberError: $phoneNumberError)';
+    return 'ContactListState(contacts: $contacts, recentlyAddedContacts: $recentlyAddedContacts, selectedContact: $selectedContact, firstNameError: $firstNameError, lastNameError: $lastNameError, emailError: $emailError, phoneNumberError: $phoneNumberError)';
   }
 
   @override
@@ -287,12 +253,6 @@ class _$_ContactListState implements _ContactListState {
                 .equals(other._recentlyAddedContacts, _recentlyAddedContacts) &&
             (identical(other.selectedContact, selectedContact) ||
                 other.selectedContact == selectedContact) &&
-            (identical(other.isAddContactSheetOpen, isAddContactSheetOpen) ||
-                other.isAddContactSheetOpen == isAddContactSheetOpen) &&
-            (identical(other.isSelectedContactSheetOpen,
-                    isSelectedContactSheetOpen) ||
-                other.isSelectedContactSheetOpen ==
-                    isSelectedContactSheetOpen) &&
             (identical(other.firstNameError, firstNameError) ||
                 other.firstNameError == firstNameError) &&
             (identical(other.lastNameError, lastNameError) ||
@@ -310,8 +270,6 @@ class _$_ContactListState implements _ContactListState {
       const DeepCollectionEquality().hash(_contacts),
       const DeepCollectionEquality().hash(_recentlyAddedContacts),
       selectedContact,
-      isAddContactSheetOpen,
-      isSelectedContactSheetOpen,
       firstNameError,
       lastNameError,
       emailError,
@@ -336,8 +294,6 @@ abstract class _ContactListState implements ContactListState {
       {final List<Contact> contacts,
       final List<Contact> recentlyAddedContacts,
       final Contact? selectedContact,
-      final bool isAddContactSheetOpen,
-      final bool isSelectedContactSheetOpen,
       final String? firstNameError,
       final String? lastNameError,
       final String? emailError,
@@ -352,10 +308,6 @@ abstract class _ContactListState implements ContactListState {
   List<Contact> get recentlyAddedContacts;
   @override
   Contact? get selectedContact;
-  @override
-  bool get isAddContactSheetOpen;
-  @override
-  bool get isSelectedContactSheetOpen;
   @override
   String? get firstNameError;
   @override

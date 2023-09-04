@@ -20,7 +20,7 @@ class ImageStorageImpl implements ImageStorage {
   }
 
   @override
-  Future<Uint8List> getImage(String fileName) async {
+  Future<Uint8List?> getImage(String fileName) async {
     final file = File(fileName);
     return file.readAsBytes();
   }
