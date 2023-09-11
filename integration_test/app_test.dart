@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-void main() {
+void main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
 
   group('end-to-end', () {
     testWidgets('새 연락처 입력 실패', (tester) async {
-      await configureDependencies();
-
       // 앱 실행
       await tester.pumpWidget(const MyApp());
 
@@ -37,8 +36,6 @@ void main() {
     });
 
     testWidgets('새 연락처 입력 성공', (tester) async {
-      await configureDependencies();
-
       // 앱 실행
       await tester.pumpWidget(const MyApp());
 
