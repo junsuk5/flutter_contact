@@ -1,21 +1,21 @@
 import 'package:contact/contact/domain/data_source/image_picker.dart';
+import 'package:contact/contact/presentation/riverpod_view_model.dart';
 import 'package:contact/di/di_setup.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'components/add_contact_sheet.dart';
 import 'components/contact_detail_sheet.dart';
 import 'components/contact_list_ui.dart';
 import 'contact_list_event.dart';
-import 'contact_list_view_model.dart';
 
-class ContactListScreen extends StatelessWidget {
+class ContactListScreen extends ConsumerWidget {
   const ContactListScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final viewModel = context.watch<ContactListViewModel>();
-    final state = viewModel.state;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModel = ref.watch(mainViewModel.notifier);
+    final state = ref.watch(mainViewModel);
     return ContactListUI(
       state: state,
       onEvent: (ContactListEvent event) {
