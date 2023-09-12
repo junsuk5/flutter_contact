@@ -1,12 +1,14 @@
+import 'package:contact/di/di_setup.config.dart';
 import 'package:contact/di/di_setup.dart';
 import 'package:contact/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:injectable/injectable.dart';
 import 'package:integration_test/integration_test.dart';
 
 void main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
+  await getIt.init(environment: Environment.dev);
 
   group('end-to-end', () {
     testWidgets('새 연락처 입력 실패', (tester) async {
